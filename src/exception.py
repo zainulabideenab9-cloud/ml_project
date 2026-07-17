@@ -1,6 +1,6 @@
 import sys
-import logger
-# 1. Rename the function to something distinct
+from logger import logging # Uncomment this if you have set up your logger import
+
 def error_message_detail(error, error_detail: sys):
     _, _, exc_tb = error_detail.exc_info()
     file_name = exc_tb.tb_frame.f_code.co_filename
@@ -10,17 +10,15 @@ def error_message_detail(error, error_detail: sys):
 class CustomException(Exception):
     def __init__(self, error_message, error_detail: sys):
         super().__init__(error_message)
-        # 2. Call the renamed function here
         self.error_message = error_message_detail(error_message, error_detail=error_detail)
     
     def __str__(self):
         return self.error_message
- 
-from exception import CustomException
 
-try:
-    # Your code that might fail
-    result = 10 / 0
-except Exception as e:
-    logger.logging.error("An error occurred: %s", str(e))
-    raise CustomException(e, sys)
+# Only run this test logic if you execute this file directly in the terminal
+if __name__ == "__main__":
+    try:
+        a = 1 / 0
+    except Exception as e:
+        logging.info("Divide by zero test")
+        raise CustomException(e, sys)
