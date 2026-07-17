@@ -3,4 +3,4 @@ venv/
 .vscode/
 ml_project.egg-info
 logs
-src\__pycache__
+src\__pycache__\
