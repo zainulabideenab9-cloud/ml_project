@@ -1,5 +1,5 @@
 import sys
-
+import logger
 # 1. Rename the function to something distinct
 def error_message_detail(error, error_detail: sys):
     _, _, exc_tb = error_detail.exc_info()
@@ -22,5 +22,5 @@ try:
     # Your code that might fail
     result = 10 / 0
 except Exception as e:
-    
+    logger.logging.error("An error occurred: %s", str(e))
     raise CustomException(e, sys)
